@@ -29,14 +29,18 @@ public class Task1_3_6_2 {
         System.out.println("Исходный массив чисел: " + arrInt);
         int firstEven = 1;
         int count = 0;
+        String summary/* = "Четных чисел не введено"*/ = null;
         for(int i = 0; i<arrInt.size(); i++) {
             if (arrInt.get(i) % 2 == 0) {
                 firstEven = arrInt.get(i);
                 count = i+1;
+                System.out.println("Найжено первое четное число: " + firstEven + ", его порядковый номер в списке: " + count);
+                summary = "";
                 break;
+            } else {
+                summary = "Четных чисел не введено";
             }
         }
-        System.out.println("Найжено первое четное число: " + firstEven + ", его порядковый номер в списке: " + count);
-
+        System.out.println(summary);
     }
 }
