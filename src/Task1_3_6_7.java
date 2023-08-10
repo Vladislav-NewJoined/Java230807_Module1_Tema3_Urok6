@@ -13,11 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-
-//        Пример _ ППППППППППППППППППППППППППППППППППП  УДДКОНЧАТЕЛЬНО, ОТПРАВЛЕН В ЭТОМ ВИДЕ !!!!!
-//  Пример взят отсюда: https://www.youtube.com/watch?v=5V2lZpEeRlA  девушка на английском говорит
-//  5 способов выполнения HTTP-запросов  https://javascopes.com/5-ways-to-make-http-requests-in-java-2p3-fca27bc8/
-//  УТИЛИТА, КАК СКАЧАТЬ ФОТО NASA_Module1_Tema1_Urok9 видео мин 22.00, НО ЗДЕСЬ БЕЗ ДАТЫ
 public class Task1_3_6_7 {
     public static void main(String[] args) throws IOException, ParseException {
         System.out.println("Задание: \n7. Сохраняйте снимки NASA с 1 января до того момента, пока в поле Explanation " +
@@ -45,13 +40,12 @@ public class Task1_3_6_7 {
 
             dateBegin_NO_Format = dateNext_NO_Format;
 
-            String pageNasa = downloadWeBPage(pageNasaAsText_NEW); //  ВОТ ЗДЕСЬ ЗАДАЕТСЯ ДАТА
+            String pageNasa = downloadWeBPage(pageNasaAsText_NEW);
             int urlBegin = pageNasa.lastIndexOf("url");
             int urlEnd = pageNasa.lastIndexOf("}");
             String urlPhoto = pageNasa.substring(urlBegin + 6, urlEnd - 1);
             try (InputStream from = new URL(urlPhoto).openStream()) {
-                Path to = Paths.get("photo.jpg");  //  ЕСЛИ БЕЗ ПЕРЕЗАПИСИ, ТО ЭТА СТРОЧКА НЕ НУЖНА ! Я подставил to И СТАЛА НУЖНА
-//            Files.copy(from, Paths.get("photo.jpg"));  //  ЭТО БЫЛО РАНЕЕ, БЕЗ ПЕРЕЗАПИСИ, СЕЙЧАС ЭТА СТРОКА НЕ НУЖНА !
+                Path to = Paths.get("photo.jpg");
                 Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
             }
 
@@ -59,7 +53,7 @@ public class Task1_3_6_7 {
 
             int explanationBegin = pageNasa.lastIndexOf("explanation");
             int explanationEnd = pageNasa.lastIndexOf("hdurl");
-            String explanation = pageNasa.substring(explanationBegin + 14, explanationEnd - 3/* или 8, три - правильно */);
+            String explanation = pageNasa.substring(explanationBegin + 14, explanationEnd - 3);
             System.out.println("Пояснение к фотографии: \n" + explanation);
 
             if (explanation.contains("Earth")) {
@@ -92,11 +86,9 @@ public class Task1_3_6_7 {
             Date date = dt.parse(dateBegin_NO_Format);
             SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
             String dateBegin_YES_Format = dt1.format(date);
-//            System.out.println("Стало dateBegin_YES_Format: " + dateBegin_YES_Format);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//        System.out.println(); //  перенос строки
     }
 
     private static String dateFormat_Next(String dateNext_NO_Format) {
@@ -106,11 +98,9 @@ public class Task1_3_6_7 {
             Date date2 = dt.parse(dateNext_NO_Format);
             SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
             dateNext_YES_Format = dt1.format(date2);
-//            System.out.println("Стала следующ. дата в цикле В ФОРМАТЕ: " + dateNext_YES_Format);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return dateNext_YES_Format;
     }
 }
-//        Конец Примера _ КККККККККККККККК
