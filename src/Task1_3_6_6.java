@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Task1_3_6_6 {
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws ParseException {
         System.out.println("Задание: \n6. Выведите все даты невисокосного года. В январе 31 день, феврале - 28, " +
                 "\nдалее чередуется - в марте 31, в апреле 30...\n\nРешение: ");
 
@@ -21,17 +21,13 @@ public class Task1_3_6_6 {
                 String dateNext_NO_Format = format.format(calendar.getTime());
                 String dateNext_YES_Format = dateBegin_NO_Format = dateNext_NO_Format;
                 System.out.print(dateNext_YES_Format + " ");
-                i = i+1;
+                i++;
                 if (i == 365) {
                     break;
                 }
             }
-            if (i == 365) {
-                break;
-            }
-            i = i-1;
             System.out.println();
+            i = i - 1;
         }
-        System.out.println();  //  перенос строки
     }
 }
